@@ -1,0 +1,5 @@
+This will eventually become the LPC documentation repository.
+
+The goal is to let the hosting website display documents directly from
+the repository, using php wrappers or somesuch.  Everything should be
+visible on the web.
