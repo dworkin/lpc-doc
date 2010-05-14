@@ -1,5 +1,9 @@
 This will eventually become the LPC documentation repository.
 
-The goal is to let the hosting website display documents directly from
-the repository, using php wrappers or somesuch.  Everything should be
-visible on the web.
+Everything in the repository can be shown on the web.  For instance, this file
+is available as:
+
+    http://lpc-doc.sourceforge.net/repository.php/README
+
+As long as HTML documents use relative paths, links will work both in your
+own repository and on Sourceforge.
