@@ -6,10 +6,10 @@ SYNOPSIS
 
 
 DESCRIPTION
-	For any given cipher, decrypt("CIPHER key", key) returns a key prepared
-	for decryption, and decrypt("CIPHER", prepared_key, str) decrypts a
-	string.
-	The only currently defined cipher is DES.
+	Cipher "DES key" prepares a key for decryption, and "DES" decrypts a
+	message with a prepared key.
+	DES is the only built-in cipher.  Other ciphers may be added through
+	extension modules.
 
 SEE ALSO
 	kfun/encrypt
