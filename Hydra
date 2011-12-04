@@ -156,8 +156,8 @@ driver, mostly to translate pathnames.
 	clone, just before a function is called in it for the first time.
 	The actual name of this function is configurable.
 
- - in the user object (returned by driver->telnet_connect() or
-   driver->binary_connect()):
+ - in the user object (created by connect(), or returned by
+   driver->telnet_connect() or driver->binary_connect()):
 
     int open()
 
@@ -200,6 +200,14 @@ driver, mostly to translate pathnames.
 
 	This function is called when a packet is received on the datagram
 	channel of the connection.
+
+ - in an object where connect() has been called:
+
+    void unconnected(int refused)
+
+	Called when an outbound connection failed to be established.  The
+	flag argument is 1 when the connection was refused by the remote
+	host.
 
 
    On startup, the system is configured with a configuration file, which

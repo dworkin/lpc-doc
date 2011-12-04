@@ -10,5 +10,5 @@ DESCRIPTION
 	task started from a delayed function call, nil is returned.
 
 SEE ALSO
-	kfun/datagram_challenge, kfun/query_ip_name, kfun/query_ip_number,
-	kfun/send_datagram, kfun/send_message, kfun/users
+	kfun/connect, kfun/datagram_challenge, kfun/query_ip_name,
+	kfun/query_ip_number, kfun/send_datagram, kfun/send_message, kfun/users
