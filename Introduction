@@ -1,18 +1,18 @@
-   Hydra is a server that uses the same overall design as the LP server
-made by Lars Pensjö.  However, there are several important differences:
-Hydra uses less memory because it is disk-based; it can dump state and later
+   The server uses the same overall design as the LP server made by
+Lars Pensjö.  However, there are several important differences:
+it uses less memory because it is disk-based; it can dump state and later
 restart from a snapshot; it uses LPC as an internal interpreted language,
-but also offers the option of precompiling LPC objects to C, making them part
-of the program itself.
-   Hydra has two special objects which determine the interface with the 
+but also offers the option of precompiling LPC objects to C, making them
+part of the program itself.
+   There are two special objects which determine the interface with the 
 server for all other objects: the auto object and the driver object.
    The auto object (short for automatically inherited object) is
 inherited by all other objects, except for the driver object.  It can
 redeclare the predefined functions (called kfuns, kernel functions)
-that Hydra provides, and it can also define standard properties that
-every object should have.  Hydra is made in such a way that some kfuns
-<have> to be redeclared in an environment with several users
-programming together; for instance, by default there is no file security.
+that the server provides, and it can also define standard properties that
+every object should have.  Some kfuns <have> to be redeclared in an
+environment with several users programming together; for instance, by
+default there is no file security.
 The auto object has some other special properties; static functions
 declared in the auto object cannot be called using this_object()->func()
 (i.e. they behave like kfuns).
