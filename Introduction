@@ -224,6 +224,7 @@ binary_port	mapping	A mapping containing host:port pairs, where the host
 		number	number is a port on which to accept raw TCP/IP
 			connections.  Alternatively, a binary port number.
 directory	string	The base directory for the system.
+modules		string*	An array of runtime extension modules (optional).
 users		number	The maximum number of active telnet and binary
 			connections.
 editors		number	The maximum number of simultaneously active
