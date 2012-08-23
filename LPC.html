@@ -74,7 +74,7 @@ and terminated by the characters <TT>*/</TT>, or a sequence of characters that
 starts with // and terminated by a new line.  All characters in between are
 part of the comment.  Comments count as whitespace separating tokens, and
 may not be nested.  The sequence <TT>/*</TT> does not start a comment if it
-is part of a string.
+is part of a string.  <b>Note: hydra does not support // style comments currently.</b>
 <BR>
 Examples:
 <PRE>
@@ -131,7 +131,10 @@ The following identifiers are reserved for use as keywords:
    <td>while</td>
 </tr>
 </table>
-(Keywords with a * after them are only available in some instances)
+<b>
+Note: dgd does not support goto currently.<br>
+Note: function is only available if compiled with -DCLOSURES
+</b>
 
  <H3> <A NAME="constants"> 3.1.5. Constants </A> </H3>
 
@@ -301,7 +304,12 @@ which will change how the variable or function works.
 
 Nil is a special value, its not actually a type but it is the value
 of a uninialized variable.  So you can see if a variable is undefined by
-seeing if it is equal to nil.
+seeing if it is equal to nil.  Example:
+<pre>
+/* Note this does not work for type int, but does for other types: string, mapping, etc... */
+string x;
+if (x == nil) write("You need to set x"); 
+</pre>
 
  <H3> <A NAME="types"> 3.4.2.2 Types: int</A> </H3>
 
@@ -353,7 +361,11 @@ cases where its truely useful to have multiple types.
 
 The void type is only valid for functions.  It says that the function
 does not return anything.  You can also use void to say that a function has
-no <i><a href="#parameters">paramaeters</a></i> passed into it.
+no <i><a href="#parameters">paramaeters</a></i> passed into it. Examples:
+<pre>
+void do_stuff(int x) { write("I did stuff " + x + " times.\n"); }
+int do_stuff2(void) { write("I did stuff.\n"); }
+</pre>
 
 <h3> <a name="type modifers"> Type Modifiers </a> </h3>
 Type modifiers appear before a type and provide special instructions
