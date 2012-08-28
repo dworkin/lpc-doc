@@ -25,9 +25,10 @@ driver, mostly to translate pathnames.
 
 	Called when the system starts up after a reboot.
 
-    void restored()
+    void restored(varargs int hotboot)
 
-	Called after the system has restarted from a snapshot.
+	Called after the system has restarted from a snapshot.  The argument
+	will be 1 if connections and editor sessions were restored as well.
 
     string path_read(string path)
 
