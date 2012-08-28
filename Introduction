@@ -251,6 +251,8 @@ dump_file	string	The name of the snapshot file.
 dump_interval	number	The expected interval between snapshots, in seconds.
 			Effectively, the time during which the swapfile will be
 			fully recreated.
+hotboot		string*	Program, with arguments, to execute during hotboot.
+			(optional)
 typechecking	number	If zero, only functions with a declared type are
 			typechecked.
 			If one, all LPC functions are typechecked.
