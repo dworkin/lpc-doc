@@ -8,8 +8,7 @@ SYNOPSIS
 DESCRIPTION
 	Create a snapshot of the current state of the system.  The actual
 	snapshot is not created until after the current task has finished.
-	If the argument is non-zero, the snapshot will be incremental if
-	supported by the server.
+	If the argument is non-zero, the snapshot will be incremental.
 
 SEE ALSO
 	kfun/swapout
