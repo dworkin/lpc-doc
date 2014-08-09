@@ -94,23 +94,23 @@ driver, mostly to translate pathnames.
 	Handle a compile-time error; there can be several for the same
 	LPC file before a runtime error results (calling runtime_error).
 
-    void runtime_error(string error, int caught, int ticks)
+    string runtime_error(string error, int caught, int ticks)
 
 	Called when a runtime error occurs.  <caught> is 0 if the error
 	is not caught, or 1 + an index in the return value of call_trace(),
 	indicating the frame in which the error is caught.  runtime_error()
 	is called with rlimits (-1; -1) so it will not run out of stack or
 	ticks.  <ticks> specifies the amount of ticks left at the moment
-	the error occurred.
+	the error occurred.  The return value is the new error string.
 
-    void atomic_error(string error, int atom, int ticks)
+    string atomic_error(string error, int atom, int ticks)
 
 	Called when a runtime error occurs in atomic code.  <atom> is an
 	an index in the return value of call_trace(), indicating the frame in
 	which the atomically executed code starts.  atomic_error() is called
 	with rlimits (-1; -1) so it will not run out of stack or ticks.
 	<ticks> specifies the amount of ticks left at the moment the error
-	occurred.
+	occurred.  The return value is the new error string.
 
     string object_type(string file, string type)
 
