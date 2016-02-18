@@ -8,3 +8,6 @@ SYNOPSIS
 DESCRIPTION
 	Return the type of a value.  The return values are declared in
 	the include file <type.h>.
+
+SEE ALSO
+	kfun/instanceof

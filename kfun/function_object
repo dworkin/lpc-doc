@@ -11,4 +11,4 @@ DESCRIPTION
 	object that defines it is returned; otherwise, nil is returned.
 
 SEE ALSO
-	kfun/call_other
+	kfun/call_other, kfun/instanceof
