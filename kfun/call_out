@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	int call_out(string function, mixed delay, mixed args...)
 
-
 DESCRIPTION
 	Call a function in the current object with a delay.  The function to
 	be called must not be private.  The delay is specified in seconds.
@@ -25,5 +24,22 @@ ERRORS
 	If the maximum number of callouts is set to 0, no delayed call will
 	be added, and no error will be caused.
 
+EXAMPLES
+	int x;
+
+	x = call_out("save_me", 0);
+
+	if (x) { 
+		write("Saved player.\n");
+	}
+
+	x = call_out("do_quit", 5);
+
 SEE ALSO
-	kfun/remove_call_out
+	kfun/call_other, kfun/call_touch, kfun/call_trace, kfun/clone_object,
+	kfun/compile_object, kfun/destruct_object, kfun/find_object,
+	kfun/function_object, kfun/instanceof, kfun/new_object,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

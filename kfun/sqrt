@@ -4,9 +4,21 @@ NAME
 SYNOPSIS
 	float sqrt(float x)
 
-
 DESCRIPTION
 	Return the square root of the argument.
 
 ERRORS
 	An error will result if the argument is negative.
+
+EXAMPLES
+	float x;
+
+	x = sqrt(144);
+	write("X = sqrt(144) = " + x + "\n");
+
+SEE ALSO
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/random
+

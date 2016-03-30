@@ -4,12 +4,21 @@ NAME
 SYNOPSIS
 	float log(float x)
 
-
 DESCRIPTION
 	Return the natural logarithm of the argument.
 
 ERRORS
 	An error will result if the argument is less than or equal to 0.
 
+EXAMPLES
+	float x;
+
+	x = log(1000);
+	write("X = log(1000) = " + x + "\n");
+
 SEE ALSO
-	kfun/exp, kfun/log10, kfun/pow
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

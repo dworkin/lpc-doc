@@ -4,12 +4,11 @@ NAME
 SYNOPSIS
 	mixed **call_trace()
 
-
 DESCRIPTION
 	Return the function call trace as an array.  The elements are of
 	the following format:
 
-	    ({ objname, progname, function, line, extern, arg1, ..., argn })
+		({ objname, progname, function, line, extern, arg1, ..., argn })
 
 	The line number is 0 if the function is in a compiled object.
 	Extern is 1 if the function was called with call_other(), and 0
@@ -18,5 +17,23 @@ DESCRIPTION
 	The last element of the returned array is the trace of the
 	current function.
 
+EXAMPLES
+	mixed **stack;
+	int i, maxi;
+
+	stack = call_trace();
+	maxi = sizeof(stack);
+
+	for (i = 0; i < maxi; i++) {
+		write(stack[i][0] + ": " + stack[i][1] + ": " + stack[i][2] + 
+			": " + stack[i][3] + "\n");
+	}
+
 SEE ALSO
-	kfun/previous_object, kfun/previous_program
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/clone_object,
+	kfun/compile_object, kfun/destruct_object, kfun/find_object,
+	kfun/function_object, kfun/instanceof, kfun/new_object,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

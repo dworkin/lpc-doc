@@ -4,12 +4,19 @@ NAME
 SYNOPSIS
 	string query_editor(object obj)
 
-
 DESCRIPTION
 	Return the editor status of an object.  This is either "command", if
 	the editor instance is in command mode, "insert", if the editor instance
 	is in input mode, or nil, if there is no editor instance for the given
 	object.
 
+EXAMPLES
+	if (!query_editor(this_player()) {
+		write("Yooo hoo!\n");
+	} else { /* Do nothing this player is busy */
+	}
+
 SEE ALSO
-	kfun/editor
+	kfun/editor, kfun/get_dir, kfun/make_dir, kfun/read_file,
+	kfun/remove_dir, kfun/remove_file, kfun/rename_file, kfun/write_file
+

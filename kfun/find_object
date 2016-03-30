@@ -4,11 +4,27 @@ NAME
 SYNOPSIS
 	object find_object(string obj)
 
-
 DESCRIPTION
 	The string argument is resolved as a file path, and the object with
 	the resulting name is searched for.  Either the object, if found, or
 	nil is returned.
 
+EXAMPLES
+	string filename;
+	object stuff;
+
+	filename = "/daemons/serialize/mudmode.c";
+	stuff = find_object(filename");
+
+	if (!stuff) {
+		write("Error, cannot find: " + filename + ".\n");
+	}
+
 SEE ALSO
-	kfun/object_name
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/function_object, kfun/instanceof, kfun/new_object,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

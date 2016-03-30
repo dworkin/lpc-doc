@@ -4,11 +4,16 @@ NAME
 SYNOPSIS
 	string query_ip_number(object user)
 
-
 DESCRIPTION
 	Return the ip number of a user, as a string, or nil if the given object
 	is not a user object.
 
+EXAMPLES
+	string ipaddr;
+
+	ipaddr = query_ip_name(this_object());
+	write("Comming from : " + ipaddr + "\n");
+
 SEE ALSO
-	kfun/connect, kfun/datagram_challenge, kfun/query_ip_name,
-	kfun/send_datagram, kfun/send_message, kfun/this_user, kfun/users
+	kfun/query_ip_name
+

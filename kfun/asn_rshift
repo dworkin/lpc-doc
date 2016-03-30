@@ -4,12 +4,24 @@ NAME
 SYNOPSIS
 	string asn_rshift(string a, int shift)
 
-
 DESCRIPTION
 	Right shift a by the given amount.
 
 ERRORS
 	An error will result if shift is less than zero.
 
+EXAMPLES
+	string res, a;
+	int b;
+
+	a = "10000000";
+	b = 2;
+
+	res = asn_rshift(a, b);
+	write("RES = asn_rshift(" + a + ", " + b + ") = " + res + "\n");
+
 SEE ALSO
-	kfun/asn_and, kfun/asn_lshift, kfun/asn_or, kfun/asn_xor
+	kfun/asn_add, kfun/asn_and, kfun/asn_cmp, kfun/asn_div,
+	kfun/asn_lshift, kfun/asn_mod, kfun/asn_mult, kfun/asn_or,
+	kfun/asn_pow, kfun/asn_sub, kfun/asn_xor
+

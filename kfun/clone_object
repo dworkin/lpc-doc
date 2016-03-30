@@ -4,12 +4,26 @@ NAME
 SYNOPSIS
 	object clone_object(object master)
 
-
 DESCRIPTION
 	Create a clone of the specified object with an unique name of the form
 	"object_name#1234".  The cloned object must not itself be a clone.  The
 	new object is returned.  The creator function will be called in the
 	cloned object immediately.
 
+EXAMPLES
+	object obj;
+
+	obj = clone_object("/std/coin.c");
+	if (obj) {
+		obj->setup();
+		obj->move(this_object);
+	}
+
 SEE ALSO
-	kfun/compile_object, kfun/destruct_object, kfun/new_object
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/compile_object, kfun/destruct_object, kfun/find_object,
+	kfun/function_object, kfun/instanceof, kfun/new_object,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

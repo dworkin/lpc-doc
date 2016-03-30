@@ -4,9 +4,24 @@ NAME
 SYNOPSIS
 	mixed *map_indices(mapping map)
 
-
 DESCRIPTION
 	Return an array containing the indices of mapping map.
 
+EXAMPLES
+	mapping mylist;
+	string *values;
+	int i, maxi;
+
+	mylist["x"] = "bingo";
+	mylist["y"] = "zebra";
+
+	values = map_indices(mylist);
+	maxi = sizeof(values);
+
+	for (i = 0; i < maxi; i++) {
+		write("Values[" + i + "] = " + values[i] + "\n");
+	}
+
 SEE ALSO
 	kfun/map_values
+

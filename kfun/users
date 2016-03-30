@@ -4,12 +4,25 @@ NAME
 SYNOPSIS
 	object *users()
 
-
 DESCRIPTION
 	Return an array containing the objects associated with the current
 	users.
 
+EXAMPLES
+	object *mylist;
+	int x, maxx;
+
+	mylist = users();
+	maxx = sizeof(mylist);
+	for (x=0; x < maxx; x++) {
+		write("User[" + x + "] = " + mylist[x]->query_name() + "\n";
+	}
+
 SEE ALSO
-	kfun/connect, kfun/datagram_challenge, kfun/query_ip_name,
-	kfun/query_ip_number, kfun/send_datagram, kfun/send_message,
-	kfun/this_user
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/instanceof,
+	kfun/new_object, kfun/object_name, kfun/remove_call_out,
+	kfun/restore_object, kfun/save_object, kfun/this_object,
+	kfun/previous_object, kfun/previous_program, kfun/this_user
+

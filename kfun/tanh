@@ -4,9 +4,18 @@ NAME
 SYNOPSIS
 	float tanh(float x)
 
-
 DESCRIPTION
 	Return the hyperbolic tangent of the argument.
 
+EXAMPLES
+	float x;
+
+	x = tanh(0.5);
+	write("X = tanh(0.5) = " + x + "\n");
+
 SEE ALSO
-	kfun/cosh, kfun/sinh
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	string asn_sub(string a, string b, string m)
 
-
 DESCRIPTION
 	Compute a minus b modulo m.  The modulus must be larger than zero.
 	Arbitrary size numbers are encoded as strings, most significant byte
@@ -14,5 +13,19 @@ DESCRIPTION
 ERRORS
 	An error will result if the modulus is less than or equal to zero.
 
+EXAMPLES
+	string res, a, b, m;
+
+	a = "10000000";
+	b = "100";
+	m = 2
+
+	res = asn_sub(a, b, m);
+	write("RES = asn_sub(" + a + ", " + b + ", " + m + ") = " + 
+		res + "\n");
+
 SEE ALSO
-	kfun/asn_add, kfun/asn_div, kfun/asn_mod, kfun/asn_mult, kfun/asn_pow
+	kfun/asn_add, kfun/asn_and, kfun/asn_cmp, kfun/asn_div,
+	kfun/asn_lshift, kfun/asn_mod, kfun/asn_mult, kfun/asn_or,
+	kfun/asn_pow, kfun/asn_rshift, kfun/asn_xor
+

@@ -4,11 +4,27 @@ NAME
 SYNOPSIS
 	string function_object(string function, object obj)
 
-
 DESCRIPTION
 	Find the named function, which must be callable with call_other(),
 	in an object.  If the function is found, the name of the inherited
 	object that defines it is returned; otherwise, nil is returned.
 
+EXAMPLES
+	string location;
+	object player;
+
+	player = this_object();
+
+	location = function_object("init", player);
+	if (location) {
+		write("Found function init in " + location + "\n");
+	}
+
 SEE ALSO
-	kfun/call_other, kfun/instanceof
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/instanceof, kfun/new_object, kfun/object_name,
+	kfun/remove_call_out, kfun/restore_object, kfun/save_object,
+	kfun/this_object, kfun/previous_object, kfun/previous_program,
+	kfun/this_user, kfun/users
+

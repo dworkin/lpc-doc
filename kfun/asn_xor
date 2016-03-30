@@ -4,10 +4,21 @@ NAME
 SYNOPSIS
 	string asn_xor(string a, string b)
 
-
 DESCRIPTION
 	Compute the bit-wise logical xor of a and b (sign extended).  The
 	result will be as long as the longest argument.
 
+EXAMPLES
+	string res, a, b;
+
+	a = "10000000";
+	b = "10000001";
+
+	res = asn_xor(a, b);
+	write("RES = asn_xor(" + a + ", " + b + ") = " + res + "\n");
+
 SEE ALSO
-	kfun/asn_and, kfun/asn_lshift, kfun/asn_or, kfun/asn_rshift
+	kfun/asn_add, kfun/asn_and, kfun/asn_cmp, kfun/asn_div,
+	kfun/asn_lshift, kfun/asn_mod, kfun/asn_mult, kfun/asn_or,
+	kfun/asn_pow, kfun/asn_rshift, kfun/asn_sub
+

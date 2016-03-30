@@ -4,11 +4,21 @@ NAME
 SYNOPSIS
 	string crypt(string passwd, varargs string salt)
 
-
 DESCRIPTION
 	The same as hash_string("crypt", passwd, salt)
 
 	This kfun is retained for backward compatibility.
 
+EXAMPLES
+	string passwd, pwhash;
+
+	passwd = "WOoHoo5";
+
+	pwhash = crypt(passwd, "Secret salt");
+	write("Password: " + passwd + "\n");
+	write("Hash: " + pwhash + "\n");
+
 SEE ALSO
+	kfun/decrypt, kfun/encrypt, kfun/hash_crc16, kfun/hash_crc32,
 	kfun/hash_string
+

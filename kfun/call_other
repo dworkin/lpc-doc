@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	mixed call_other(mixed obj, string function, mixed args...)
 
-
 DESCRIPTION
 	Call a function in an object.  The first argument must be either an
 	object or a string.  If it is a string, call_object() will be called
@@ -26,5 +25,20 @@ ERRORS
 	called with call_other() because it is private or static, does not
 	result in an error but returns the value nil.
 
+EXAMPLES
+	object obj;
+
+	obj = this_player();
+	if (obj) {
+		call_other(this_player(), "set_short", "The punk");
+		call_other(this_player(), "setup");
+	}
+
 SEE ALSO
-	kfun/call_touch, kfun/function_object
+	kfun/call_out, kfun/call_touch, kfun/call_trace, kfun/clone_object,
+	kfun/compile_object, kfun/destruct_object, kfun/find_object,
+	kfun/function_object, kfun/instanceof, kfun/new_object,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

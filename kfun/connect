@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	void connect(string host, int port)
 
-
 DESCRIPTION
 	Initiate a connection to the given host and port.  Once established,
 	the current object will become a user object.  If a connection
@@ -16,6 +15,10 @@ ERRORS
 	An error will result if the current object is already a user or
 	editor object.
 
+EXAMPLES
+	connect("someremotehost.com",3333);
+
 SEE ALSO
-	kfun/query_ip_name, kfun/query_ip_number, kfun/send_message,
-	kfun/this_user, kfun/users
+	kfun/block_input, kfun/datagram_challenge, kfun/error,
+	kfun/send_datagram, kfun/send_message
+

@@ -4,12 +4,11 @@ NAME
 SYNOPSIS
 	mixed **get_dir(string file)
 
-
 DESCRIPTION
 	Get information about a file or files in a directory.  The return
-	value is of the form
+	value is of the form:
 
-	    ({ ({ file names }), ({ file sizes }), ({ file mod times }) })
+		({ ({ file names }), ({ file sizes }), ({ file mod times }) })
 
 	If a file is a directory, the file size will be given as -2.
 	If the last path component of the specified file can be interpreted
@@ -19,16 +18,28 @@ DESCRIPTION
 	will be ({ ({ }), ({ }), ({ }) }).
 	The following characters have a special meaning in a regular expression:
 
-	    ?	    any single character
-	    *	    any (possibly empty) string
-	    [a-z]   any character in the range a-z
-	    [^a-z]  any character not in range a-z
-	    \c	    the character c, not interpreted as having a special
-		    meaning
+		?	any single character
+		*	any (possibly empty) string
+		[a-z]	any character in the range a-z
+		[^a-z]  any character not in range a-z
+		\c	the character c, not interpreted as having a
+				special meaning
 
 	The files will be sorted by file name.
 	Only as many files as specified by status()[ST_ARRAYSIZE], with
 	ST_ARRAYSIZE defined in the include file <status.h>, will be collected.
 
+EXAMPLES
+	string *files;
+	int x, maxx;
+
+	files = get_dir(/cmds/player/*.c")[0];
+	maxx = sizeof(files);
+	for (x = 0; x < maxx; x++) {
+		write("File: " + files[x] + "\n");
+	}
+
 SEE ALSO
-	kfun/make_dir, kfun/remove_dir
+	kfun/editor, kfun/make_dir, kfun/query_editor, kfun/read_file,
+	kfun/remove_dir, kfun/remove_file, kfun/rename_file, kfun/write_file
+

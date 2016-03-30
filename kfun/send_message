@@ -5,7 +5,6 @@ SYNOPSIS
 	int send_message(string message)
 	int send_message(int echo)
 
-
 DESCRIPTION
 	In the first form, send a message to the user associated with the
 	current object, returning the number of bytes that could be sent.
@@ -19,6 +18,16 @@ DESCRIPTION
 	buffer has fully drained, message_done() will not be called before the
 	output buffer has emptied completely.
 
+EXAMPLES
+	int x;
+
+	x = send_message("WOo your a winner\n");
+
+	if (!x) {
+		/* Log some kind of error message */
+	}
+
 SEE ALSO
-	kfun/connect, kfun/datagram_challenge, kfun/query_ip_name,
-	kfun/query_ip_number, kfun/send_datagram, kfun/this_user, kfun/users
+	kfun/block_input, kfun/connect, kfun/datagram_challenge, kfun/error,
+	kfun/send_datagram
+

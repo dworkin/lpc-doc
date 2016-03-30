@@ -4,12 +4,21 @@ NAME
 SYNOPSIS
 	float exp(float x)
 
-
 DESCRIPTION
 	Return the exponential value of the given argument.
 
 ERRORS
 	If the computed exponential is too large, an error will result.
 
+EXAMPLES
+	float x;
+
+	x = exp(1000);
+	write("X = exp(1000) = " + x + "\n");
+
 SEE ALSO
-	kfun/log, kfun/log10, kfun/pow
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

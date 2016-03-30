@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	void datagram_challenge(string challenge)
 
-
 DESCRIPTION
 	Set the datagram challenge for the current binary user object.  The
 	client must send this challenge in order to open the datagram channel,
@@ -15,6 +14,13 @@ ERRORS
 	An error will result if a challenge has already been set for the
 	current object.
 
+EXAMPLES
+	string chal;
+
+	chal = "HELLO";
+	datagram_challenge(chal);
+
 SEE ALSO
-	kfun/query_ip_name, kfun/query_ip_number, kfun/send_datagram,
-	kfun/this_user, kfun/users
+	kfun/block_input, kfun/connect, kfun/error,
+	kfun/send_datagram, kfun/send_message
+

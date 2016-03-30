@@ -4,21 +4,34 @@ NAME
 SYNOPSIS
 	int instanceof(object obj, string type)
 
-
 DESCRIPTION
 	Check whether an object is an instance of the given type, which is
 	first processed by object_type() in the driver object.  The return
 	value is -1 if the type is privately inherited, 1 if the type is
 	normally inherited, or 0 otherwise.
 
-ERRORS
-	An error will result if object_type() does not return a string.
-
-SEE ALSO
-	kfun/function_object, kfun/typeof
-
 NOTE
 	instanceof() is not equivalent with <- in the same way as call_other()
 	is equivalent with ->.  Instanceof processes the type string at
 	runtime, whereas <- does it at compile time, and masking instanceof()
 	will not affect <-.
+
+ERRORS
+	An error will result if object_type() does not return a string.
+
+EXAMPLES
+	int x;
+	object person;
+
+	person = this_player();
+	x = instanceof(person, "");
+	write("X = " + x + "\n");
+
+SEE ALSO
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/new_object,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/typeof, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

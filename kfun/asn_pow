@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	string asn_pow(string a, string b, string m)
 
-
 DESCRIPTION
 	Compute a raised to the power b modulo m.  The modulus must be larger
 	than zero.  Negative powers can only be used if an inverse modulo m
@@ -17,5 +16,19 @@ ERRORS
 	An error will result if the modulus is less than or equal to zero, or
 	if b is negative and no inverse modulo m exists.
 
+EXAMPLES
+	string res, a, b, m;
+
+	a = "10000000";
+	b = "100";
+	m = 2
+
+	res = asn_pow(a, b, m);
+	write("RES = asn_pow(" + a + ", " + b + ", " + m + ") = " +
+		res + "\n");
+
 SEE ALSO
-	kfun/asn_add, kfun/asn_div, kfun/asn_mod, kfun/asn_mult, kfun/asn_sub
+	kfun/asn_add, kfun/asn_and, kfun/asn_cmp, kfun/asn_div,
+	kfun/asn_lshift, kfun/asn_mod, kfun/asn_mult, kfun/asn_or,
+	kfun/asn_rshift, kfun/asn_sub, kfun/asn_xor
+

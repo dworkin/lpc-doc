@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	string *explode(string str, string separator)
 
-
 DESCRIPTION
 	Return an array of substrings of str, divided by the given separator.
 	The separators that str starts and ends with, if any, are not taken
@@ -15,5 +14,14 @@ ERRORS
 	ST_ARRAYSIZE defined in the include file <status.h>, an error will
 	result.
 
+EXAMPLES
+	string *values, str;
+
+	str = "Woo:Hoo";
+
+	values = explode(str, ":");
+	write("values[0] = " + values[0] + "\n");
+
 SEE ALSO
 	kfun/implode, kfun/parse_string, kfun/sscanf
+

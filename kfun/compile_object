@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	object compile_object(string file, string source...)
 
-
 DESCRIPTION
 	Compile an object from a LPC file, specified by the first argument with
 	".c" appended.  If the optional source argument are supplied, the object
@@ -21,6 +20,19 @@ ERRORS
 	Compilation errors will be reported to the driver object.  Furthermore,
 	a failure to compile will result in a runtime error, as well.
 
+EXAMPLES
+	object obj;
+
+	obj = compile_object("/daemons/skill_d.c");
+	if (!obj) {
+		/* Log an error */
+	}
+
 SEE ALSO
-	kfun/clone_object, kfun/destruct_object, kfun/new_object,
-	kfun/object_name
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/destruct_object, kfun/find_object,
+	kfun/function_object, kfun/instanceof, kfun/new_object,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

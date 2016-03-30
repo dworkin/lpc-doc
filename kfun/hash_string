@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	string hash_string(string algo, string str, string extra...)
 
-
 DESCRIPTION
 	Hash a string, possibly after concatenation of optional extra
 	arguments, with the given algorithm.  The following hash algorithms are
@@ -20,5 +19,16 @@ DESCRIPTION
 		concatenated before the hash is calculated.  The result is
 		a string of 20 characters.
 
+EXAMPLES
+	string passwd, pwhash;
+
+	passwd = "WOoHoo5";
+
+	pwhash = hash_string("crypt", passwd, "Secret salt");
+	write("Password: " + passwd + "\n");
+	write("Hash: " + pwhash + "\n");
+
 SEE ALSO
-	kfun/hash_crc16, kfun/hash_crc32
+	kfun/crypt, kfun/decrypt, kfun/encrypt, kfun/hash_crc16,
+	kfun/hash_crc32
+

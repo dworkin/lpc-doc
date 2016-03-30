@@ -4,9 +4,20 @@ NAME
 SYNOPSIS
 	object this_object()
 
-
 DESCRIPTION
 	Return the current object, or nil if the current object is destructed.
 
+EXAMPLES
+	object obj;
+
+	obj = clone_object("/domains/required/objects/helmet.c");
+	obj->move(this_object());
+
 SEE ALSO
-	kfun/previous_object
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/instanceof,
+	kfun/new_object, kfun/object_name, kfun/remove_call_out,
+	kfun/restore_object, kfun/save_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	mixed remove_call_out(int handle)
 
-
 DESCRIPTION
 	Remove the callout associated with handle.  The delay after which the
 	function would have been called is returned.  The delay is an integer
@@ -12,5 +11,21 @@ DESCRIPTION
 	If there is no scheduled call associated with the handle in the current
 	object, return -1.
 
+EXAMPLES
+	int x;
+
+	write("Quitting.");
+	x = call_out("do_quit", 500);
+	write("Just kidding.\n");
+
+	x = remove_call_out(x);
+	write("That was close would have exited in " + x + ".\n");
+
 SEE ALSO
-	kfun/call_out
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/instanceof,
+	kfun/new_object, kfun/object_name, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

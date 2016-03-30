@@ -4,10 +4,22 @@ NAME
 SYNOPSIS
 	int typeof(mixed value)
 
-
 DESCRIPTION
 	Return the type of a value.  The return values are declared in
 	the include file <type.h>.
 
+EXAMPLES
+	int x;
+	mixed result;
+
+	result = get_data();
+
+	x = typeof(result[0]);
+	if (x == T_INT) {
+		write("We have an Int.\n");
+	}
+
 SEE ALSO
-	kfun/instanceof
+	kfun/allocate, kfun/allocate_float, kfun/allocate_int,
+	kfun/instanceof, kfun/map_sizeof, kfun/sizeof, kfun/strlen
+
