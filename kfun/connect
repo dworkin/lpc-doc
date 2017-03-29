@@ -8,9 +8,14 @@ SYNOPSIS
 DESCRIPTION
 	Initiate a connection to the given host and port.  Once established,
 	the current object will become a user object.  If a connection
-	cannot be established, unconnected(refused) will be called in the
-	current object, for which the argument will be 1 if the remote host
-	refused the connection, or 0 otherwise.
+	cannot be established, unconnected(errcode) will be called in the
+	current object, for which the argument will be one of the following:
+
+	    0	unspecified failure
+	    1	connection refused
+	    2	host unreachable
+	    3	network unreachable
+	    4	connection timed out
 
 ERRORS
 	An error will result if the current object is already a user or
