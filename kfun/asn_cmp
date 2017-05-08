@@ -4,10 +4,25 @@ NAME
 SYNOPSIS
 	int asn_cmp(string a, string b)
 
-
 DESCRIPTION
 	Compare a and b, returning -1 if a is smaller than b, 1 if a is larger
 	than b, or 0 if a is equal to b.
 	Arbitrary size numbers are encoded as strings, most significant byte
 	first.  The most significant bit in the first byte, when set, indicates
 	that the number is negative and encoded in two's complement.
+
+EXAMPLES
+	string a, b;
+	int res;
+
+	a = "10000000";
+	b = "10000001";
+
+	res = asn_cmp(a, b);
+	write("RES = asn_cmp(" + a + ", " + b + ") = " + res + "\n");
+
+SEE ALSO
+	kfun/asn_add, kfun/asn_and, kfun/asn_div, kfun/asn_lshift,
+	kfun/asn_mod, kfun/asn_mult, kfun/asn_or, kfun/asn_pow,
+	kfun/asn_rshift, kfun/asn_sub, kfun/asn_xor
+

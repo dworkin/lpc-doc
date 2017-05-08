@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	object new_object(object master)
 
-
 DESCRIPTION
 	Create a new light-weight instance of the specified object with a name
 	of the form "object_name#-1".  If the master object is itself a light-
@@ -14,5 +13,26 @@ DESCRIPTION
 	The new object is returned.  The creator function will be called in the
 	new object immediately.
 
+EXAMPLES
+	object obj, data_obj;
+
+	data_obj = find_object(AUTH_OBJ);
+
+	if (data_obj) {
+		obj = new_object(data_obj);
+
+		if (!obj) {
+			/* log an error */
+		}
+	} else {
+		/* Log an error */
+	}
+
 SEE ALSO
-	kfun/clone_object
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/instanceof,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

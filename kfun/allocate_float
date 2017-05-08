@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	float *allocate_float(int size)
 
-
 DESCRIPTION
 	Allocate an array with size elements.  All elements are initialized
 	to 0.0.  The new array is returned.
@@ -14,5 +13,18 @@ ERRORS
 	status()[ST_ARRAYSIZE], with ST_ARRAYSIZE defined in the include file
 	<status.h>, an error will result.
 
+EXAMPLES
+	int i, imax;
+	float *count;
+
+	imax = 10;
+
+	count = allocate_float(imax);
+	for (i = 0; i < imax; i++) {
+		count[i] = ( i + 1.04 ) * (i + 1.04);
+	}
+
 SEE ALSO
-	kfun/allocate, kfun/allocate_int, kfun/sizeof
+	kfun/allocate, kfun/allocate_int,
+	kfun/map_sizeof, kfun/sizeof, kfun/strlen, kfun/typeof
+

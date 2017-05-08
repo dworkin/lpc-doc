@@ -4,10 +4,21 @@ NAME
 SYNOPSIS
 	int remove_file(string file)
 
-
 DESCRIPTION
 	Remove a file.  1 is returned if the file could be removed, 0
 	otherwise.
 
+EXAMPLES
+	string filename;
+
+	filename = "/tmp/example.txt";
+
+	if (!remove_file(filename)) {
+		write("Unable to remove: " + filename + "\n");
+	}
+
 SEE ALSO
-	kfun/rename_file
+	kfun/editor, kfun/get_dir, kfun/make_dir, kfun/query_editor,
+	kfun/read_file, kfun/remove_dir, kfun/rename_file,
+	kfun/write_file
+

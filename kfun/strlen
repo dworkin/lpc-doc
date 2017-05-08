@@ -4,9 +4,17 @@ NAME
 SYNOPSIS
 	int strlen(string str)
 
-
 DESCRIPTION
 	Return the length of string str.
 
+EXAMPLES
+	int x;
+	string name;
+
+	name = this_player()->query_name();
+	x = strlen(name);
+
 SEE ALSO
-	kfun/map_sizeof, kfun/sizeof
+	kfun/allocate, kfun/allocate_float, kfun/allocate_int,
+	kfun/map_sizeof, kfun/sizeof, kfun/typeof
+

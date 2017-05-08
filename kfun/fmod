@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	float fmod(float x, float y)
 
-
 DESCRIPTION
 	Return the value f, for which there exists an integer k such that
 	k * y + f == x, f has the same sign of x, and the absolute value of
@@ -13,5 +12,15 @@ DESCRIPTION
 ERRORS
 	A domain error will result if y == 0.0.
 
+EXAMPLES
+	float x;
+
+	x = fmod(333.5, 5.3);
+	write("X = fmod(333.5, 5.3) = " + x + "\n");
+
 SEE ALSO
-	kfun/ceil, kfun/floor
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

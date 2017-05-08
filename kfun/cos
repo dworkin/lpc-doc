@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	float cos(float x)
 
-
 DESCRIPTION
 	Return the cosine of the argument.
 
@@ -12,5 +11,15 @@ ERRORS
 	An error will result if the argument is too large to accurately
 	compute the cosine (around 1e9).
 
+EXAMPLES
+	float x;
+
+	x = cos(0.5);
+	write("X = cos(0.5) = " + x + "\n");
+
 SEE ALSO
-	kfun/sin, kfun/tan
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

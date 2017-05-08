@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	void save_object(string file)
 
-
 DESCRIPTION
 	Save all global variables in an object that are not private or static
 	to a file.  Only non-zero and non-object values are actually saved.
@@ -12,5 +11,17 @@ DESCRIPTION
 ERRORS
 	An error will result if the save file could not be created.
 
+EXAMPLES
+	string filename;
+
+	filename = "/data/players/" + this_object->query_name() + ".o";
+	save_object(filename);
+
 SEE ALSO
-	kfun/restore_object
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/instanceof,
+	kfun/new_object, kfun/object_name, kfun/remove_call_out,
+	kfun/restore_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	mixed *allocate(int size)
 
-
 DESCRIPTION
 	Allocate an array with size elements.  All elements are initialized
 	to nil.  The new array is returned.
@@ -14,5 +13,19 @@ ERRORS
 	status()[ST_ARRAYSIZE], with ST_ARRAYSIZE defined in the include file
 	<status.h>, an error will result.
 
+EXAMPLES
+	string *race_names, *lines;
+	int i, imax;
+
+	race_names = RACE_D->query_races();
+	imax = sizeof(race_names);
+
+	lines = allocate(imax);
+	for (i = 0; i < imax; i++) {
+		lines[i] = "Race: " + race_names[i] + "\n");
+	}
+
 SEE ALSO
-	kfun/allocate_int, kfun/allocate_float, kfun/sizeof
+	kfun/allocate_float, kfun/allocate_int,
+	kfun/map_sizeof, kfun/sizeof, kfun/strlen, kfun/typeof
+

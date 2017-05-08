@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	void destruct_object(object obj)
 
-
 DESCRIPTION
 	Destruct the object given as the argument.  Any value holding the object
 	will immediately change into nil, and the object will cease to exist.
@@ -18,5 +17,20 @@ ERRORS
 	time of destruction and the time the object will cease to exist.  Most
 	notably, call_other() may not be used from destructed objects.
 
+EXAMPLES
+	object myobj;
+
+	myobj = find_object("/daemons/user_d");
+
+	if (myobj) {
+		destruct_object(myobj);
+	}
+
 SEE ALSO
-	kfun/clone_object, kfun/compile_object
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/find_object,
+	kfun/function_object, kfun/instanceof, kfun/new_object,
+	kfun/object_name, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

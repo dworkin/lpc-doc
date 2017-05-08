@@ -4,9 +4,20 @@ NAME
 SYNOPSIS
 	int map_sizeof(mapping map)
 
-
 DESCRIPTION
 	Return the number of index-value pairs in mapping map.
 
+EXAMPLES
+	int x;
+	mapping mymap;
+
+	mymap["Name"] = "sirdude";
+	mymap["Level"] = 1;
+
+	x = map_sizeof(mymap);
+	write("X = " + x + "\n");
+
 SEE ALSO
-	kfun/sizeof, kfun/strlen
+	kfun/allocate, kfun/allocate_float, kfun/allocate_int,
+	kfun/sizeof, kfun/strlen, kfun/typeof
+

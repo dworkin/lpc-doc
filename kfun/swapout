@@ -4,10 +4,13 @@ NAME
 SYNOPSIS
 	void swapout()
 
-
 DESCRIPTION
 	Swap out all objects.  This function can be called periodically to
 	clean up memory.
 
+EXAMPLES
+	swapout();
+
 SEE ALSO
-	kfun/dump_state
+	kfun/dump_state, kfun/shutdown, kfun/status
+

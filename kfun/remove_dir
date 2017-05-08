@@ -4,10 +4,20 @@ NAME
 SYNOPSIS
 	int remove_dir(string dir)
 
-
 DESCRIPTION
 	Remove a directory, which must be empty.  1 is returned if the
 	directory could be removed, 0 otherwise.
 
+EXAMPLES
+	string dirname;
+
+	dirname = "/tmp/example";
+
+	if (!remove_dir(dirname)) {
+		write("Unable to remove dir: " + dirname + "\n");
+	}
+
 SEE ALSO
-	kfun/get_dir, kfun/make_dir
+	kfun/editor, kfun/get_dir, kfun/make_dir, kfun/query_editor,
+	kfun/read_file, kfun/remove_file, kfun/rename_file, kfun/write_file
+

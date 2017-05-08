@@ -4,12 +4,22 @@ NAME
 SYNOPSIS
 	object previous_object(varargs int n)
 
-
 DESCRIPTION
 	Return the object n+1 (default: 1) steps back in the call_other chain.
 	If the object is destructed, or the number of steps is larger than
 	the number of call_others involved, nil is returned.
 
+EXAMPLES
+	object parent, grandparent;
+
+	parent = this_object()->previous_object();
+	grandparent = this_object()->previous_object(2);
+
 SEE ALSO
-	kfun/call_other, kfun/previous_program, kfun/this_object,
-	kfun/call_trace
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/instanceof,
+	kfun/new_object, kfun/object_name, kfun/remove_call_out,
+	kfun/restore_object, kfun/save_object, kfun/this_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

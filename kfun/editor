@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	string editor(varargs string command)
 
-
 DESCRIPTION
 	Execute an editor command for the current object.  If the editor
 	command is the first for this object, an editor instance will be
@@ -22,5 +21,17 @@ ERRORS
 	one will result in an error.
 	It is not possible to start an editor instance for a user object.
 
+EXAMPLES
+	string msg, myfile;
+
+	myfile = "/tmp/sirdude.txt";
+
+	msg = editor("e " + myfile);
+
+	write("\nDone.\n");
+	write("Msg = " + msg + "\n");
+
 SEE ALSO
-	kfun/read_file, kfun/write_file
+	kfun/get_dir, kfun/make_dir, kfun/query_editor, kfun/read_file,
+	kfun/remove_dir, kfun/remove_file, kfun/rename_file, kfun/write_file
+

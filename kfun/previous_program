@@ -4,11 +4,22 @@ NAME
 SYNOPSIS
 	string previous_program(varargs int n)
 
-
 DESCRIPTION
 	Return the name of the object with the function n+1 (default: 1) steps
 	back in the function call chain.  If the number of steps is larger than
 	the number of function calls involved, nil is returned.
 
+EXAMPLES
+	string parent, grandparent;
+
+	parent = previous_program();
+	grandparent = previous_program(2);
+
 SEE ALSO
-	kfun/previous_object, kfun/call_trace
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/instanceof,
+	kfun/new_object, kfun/object_name, kfun/remove_call_out,
+	kfun/restore_object, kfun/save_object, kfun/this_object,
+	kfun/previous_object, kfun/this_user, kfun/users
+

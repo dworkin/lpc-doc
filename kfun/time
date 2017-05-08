@@ -4,10 +4,13 @@ NAME
 SYNOPSIS
 	int time()
 
-
 DESCRIPTION
 	Return the current time as an integer.  The time can be converted
 	into a string with the kfun ctime().
 
+EXAMPLES
+	write("The current time is " + ctime(time()) + "\n");
+
 SEE ALSO
 	kfun/ctime, kfun/millitime
+

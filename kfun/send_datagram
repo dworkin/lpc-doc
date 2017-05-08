@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	int send_datagram(string message)
 
-
 DESCRIPTION
 	Send a message on the datagram channel of a binary user object.  At
 	least one message must have been received on the same channel before
@@ -15,6 +14,16 @@ DESCRIPTION
 ERRORS
 	An error will result if the current object has no datagram channel.
 
+EXAMPLES
+	int x;
+
+	x = send_datagram("Woo your a winner!\n");
+
+	if (!x) {
+		/* Log some kind of error */
+	}
+
 SEE ALSO
-	kfun/datagram_challenge, kfun/query_ip_name, kfun/query_ip_number,
-	kfun/send_message, kfun/this_user, kfun/users
+	kfun/block_input, kfun/connect, kfun/datagram_challenge, kfun/error,
+	kfun/send_message
+

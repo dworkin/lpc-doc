@@ -4,16 +4,25 @@ NAME
 SYNOPSIS
 	float tan(float x)
 
-
 DESCRIPTION
 	Return the tangent of the argument.
+
+NOTE
+	For values close to a multiple of PI/2, the result may be inaccurate.
 
 ERRORS
 	An error will result if the argument is too large to accurately
 	compute the tangent (around 1e9).
 
-SEE ALSO
-	kfun/cos, kfun/sin
+EXAMPLES
+	float x;
 
-NOTE
-	For values close to a multiple of PI/2, the result may be inaccurate.
+	x = tan(0.5);
+	write("X = tan(0.5) = " + x + "\n");
+
+SEE ALSO
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

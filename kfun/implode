@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	string implode(string *arr, string separator)
 
-
 DESCRIPTION
 	Return a string, consisting of all string elements of the array arr
 	concatenated, separated by the string separator.
@@ -13,5 +12,15 @@ ERRORS
 	If the resulting string would be too long, an error will result.
 	The argument array may contain only string values.
 
+EXAMPLES
+	string *values, str;
+
+	values = ({ "Woo" });
+	values += ({ "Hoo" });
+
+	str = implode(values, ":");
+	write("str = " + str + "\n");
+
 SEE ALSO
 	kfun/explode, kfun/parse_string, kfun/sscanf
+

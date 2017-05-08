@@ -4,12 +4,22 @@ NAME
 SYNOPSIS
 	float ldexp(float x, int n)
 
-
 DESCRIPTION
 	Return the value x * 2 ** n.
 
 ERRORS
 	An error will occur if the result is out of range.
 
+EXAMPLES
+	float x;
+
+	x = ldexp(5.323, 5);
+
+	write("X = ldexp(5.323, 5) = " + x + "\n");
+
 SEE ALSO
-	kfun/frexp, kfun/modf
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

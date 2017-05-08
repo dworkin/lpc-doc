@@ -3,8 +3,7 @@ NAME
 
 SYNOPSIS
 	mixed *parse_string(string grammar, string str,
-			    varargs int alternatives)
-
+					varargs int alternatives)
 
 DESCRIPTION
 	Parse a string as described by the grammar.  If parsing is successful,
@@ -16,5 +15,20 @@ DESCRIPTION
 	destructed.
 	This function cannot be used from a special object.
 
+EXAMPLES
+	string *result, str, GRAMMAR;
+	int i, maxi;
+
+	GRAMMAR = "whitespace = /[\n\b\r\t ]+/ " + 
+		"word = /[^\n\b\r\t ]+/ S: word S: S word";
+	str = "fun time\tis\tfun!";
+
+	result = parse_string(GRAMMAR, str);
+	maxi = sizeof(result);
+	for(i = 0; i < maxi; i++) {
+		write("\t" + i + ": " + result[i] + "\n");
+	}
+
 SEE ALSO
 	kfun/explode, kfun/implode, kfun/sscanf
+

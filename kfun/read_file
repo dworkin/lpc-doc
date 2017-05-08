@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	string read_file(string file, varargs int offset, int size)
 
-
 DESCRIPTION
 	Read a file.  The optional second and third arguments specify an
 	offset in the file and the maximum length of the string to be read,
@@ -16,5 +15,17 @@ ERRORS
 	If the offset is out of range or the returned string would be too
 	large, an error will result.
 
+EXAMPLES
+	string info, filename;
+
+	filename = "/tmp/stuff.txt";
+
+	info = read_file(filename);
+	write("The whole file:\n" + info + "\n");
+	info = read_file(filename, 10, 15);
+	write("A subsection:\n" + info + "\n");
+
 SEE ALSO
-	kfun/editor, kfun/write_file
+	kfun/editor, kfun/get_dir, kfun/make_dir, kfun/query_editor,
+	kfun/remove_dir, kfun/remove_file, kfun/rename_file, kfun/write_file
+

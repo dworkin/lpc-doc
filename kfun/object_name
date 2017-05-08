@@ -4,9 +4,20 @@ NAME
 SYNOPSIS
 	string object_name(object obj)
 
-
 DESCRIPTION
 	Return the name of object obj.
 
+EXAMPLES
+	string name;
+
+	name = object_name(this_object());
+	write("Looking at " + name + "\n");
+
 SEE ALSO
-	kfun/find_object
+	kfun/call_other, kfun/call_out, kfun/call_touch, kfun/call_trace,
+	kfun/clone_object, kfun/compile_object, kfun/destruct_object,
+	kfun/find_object, kfun/function_object, kfun/instanceof,
+	kfun/new_object, kfun/remove_call_out, kfun/restore_object,
+	kfun/save_object, kfun/this_object, kfun/previous_object,
+	kfun/previous_program, kfun/this_user, kfun/users
+

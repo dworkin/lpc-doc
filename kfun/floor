@@ -4,9 +4,18 @@ NAME
 SYNOPSIS
 	float floor(float x)
 
-
 DESCRIPTION
 	Round the argument towards negative infinity.
 
+EXAMPLES
+	float x;
+
+	x = floor(10.55555);
+	write("X = floor(10.55555) = " + x + "\n");
+
 SEE ALSO
-	kfun/ceil, kfun/fmod
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

@@ -4,11 +4,18 @@ NAME
 SYNOPSIS
 	void dump_state(vararg int incremental)
 
-
 DESCRIPTION
 	Create a snapshot of the current state of the system.  The actual
 	snapshot is not created until after the current task has finished.
 	If the argument is non-zero, the snapshot will be incremental.
 
+EXAMPLES
+	dump_state();
+
+	sleep(100);
+
+	dump_state(1);
+
 SEE ALSO
-	kfun/swapout
+	kfun/shutdown, kfun/status, kfun/swapout
+

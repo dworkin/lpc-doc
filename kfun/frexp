@@ -4,11 +4,22 @@ NAME
 SYNOPSIS
 	mixed *frexp(float x)
 
-
 DESCRIPTION
 	The argument is split into a fraction f and an integer exponent n,
 	such that either f == 0.0, or 0.5 <= | f | < 1.0, and f * 2 ** n == x.
 	({ f, n }) is returned.  If x == 0.0, both f and n will be zero.
 
+EXAMPLES
+	mixed *values;
+
+	values = frexp(5555.333);
+
+	write("frepx(5555.333) = ({ " + values[0] + ", " + values[1] + 
+		"});\n");
+
 SEE ALSO
-	kfun/ldexp, kfun/modf
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt, kfun/random
+

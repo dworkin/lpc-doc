@@ -4,7 +4,6 @@ NAME
 SYNOPSIS
 	void shutdown(varargs int hotboot)
 
-
 DESCRIPTION
 	Shut down the system after the current task has finished.  A non-zero
 	argument indicates that the system should attempt to hot-boot after
@@ -14,3 +13,10 @@ ERRORS
 	An error will result if hot-booting is attempted without dump_state()
 	having been called earlier in the same task, or if hot-booting is
 	disabled.
+
+EXAMPLES
+	shutdown(1);
+
+SEE ALSO
+	kfun/dump_state, kfun/status, kfun/swapout
+

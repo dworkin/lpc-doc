@@ -4,7 +4,29 @@ NAME
 SYNOPSIS
 	int random(int mod)
 
-
 DESCRIPTION
 	Return a positive random number in the range 0 .. mod-1.  If mod
 	is less than 1, 0 is returned.
+
+EXAMPLES
+	int val;
+
+	val = random(3);
+	switch (val) {
+		case 1:
+			write("The coin lands with heads up!\n");
+			break;
+		case 2:
+			write("The coin lands with tails up!\n");
+			break;
+		default:
+			write("Unbelievably the coin lands on it's edge!\n");
+			break;
+	}
+
+SEE ALSO
+	kfun/acos, kfun/asin, kfun/atan, kfun/atan2, kfun/ceil, kfun/cos,
+	kfun/cosh, kfun/exp, kfun/fabs, kfun/floor, kfun/fmod, kfun/modf,
+	kfun/frexp, kfun/ldexp, kfun/log, kfun/log10, kfun/pow,
+	kfun/tan, kfun/tanh, kfun/sin, kfun/sinh, kfun/sqrt
+
