@@ -22,5 +22,5 @@ ERRORS
 	editor object.
 
 SEE ALSO
-	kfun/query_ip_name, kfun/query_ip_number, kfun/send_message,
-	kfun/this_user, kfun/users
+	kfun/connect_datagram, kfun/query_ip_name, kfun/query_ip_number,
+	kfun/send_message, kfun/this_user, kfun/users
