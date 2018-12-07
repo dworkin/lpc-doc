@@ -14,6 +14,7 @@ DESCRIPTION
 	object, for which the argument will be one of the following:
 
 	    0	unspecified failure
+	    3	datagram_port and host are on different networks
 	    5	datagram connection already exists
 
 ERRORS
