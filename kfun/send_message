@@ -21,5 +21,5 @@ DESCRIPTION
 
 SEE ALSO
 	kfun/connect, kfun/connect_datagram, kfun/datagram_challenge,
-	kfun/query_ip_name, kfun/query_ip_number, kfun/send_datagram,
-	kfun/this_user, kfun/users
+	kfun/query_ip_name, kfun/query_ip_number, kfun/send_close,
+	kfun/send_datagram, kfun/this_user, kfun/users

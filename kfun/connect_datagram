@@ -23,4 +23,4 @@ ERRORS
 
 SEE ALSO
 	kfun/connect, kfun/query_ip_name, kfun/query_ip_number,
-	kfun/send_message, kfun/this_user, kfun/users
+	kfun/send_datagram, kfun/this_user, kfun/users
