@@ -14,3 +14,6 @@ DESCRIPTION
 ERRORS
 	An error will result if the modulus is less than or equal to zero, or
 	if there is no inverse.
+
+SEE ALSO
+	kfun/asn_mult

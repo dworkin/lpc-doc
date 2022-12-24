@@ -1,184 +1,134 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-
-<head>
- <title>
- The (DGD)LPC Reference Manual
- </title>
-
-</head>
-<body>
-
-<p>
 NOTE:
-
 This file is a work in progress, so when in doubt look at the source code.
 It should give you the general idea, but it still needs a lot of love.
-</p>
 
- <h1> The LPC Reference Manual </h1>
-<p>
- Copyright &copy; 1995 - 1997 Dworkin B.V.  This document has been released
+# The LPC Reference Manual
+
+ Copyright © 1995 - 1997 Dworkin B.V.  This document has been released
  into the public domain.
-</p>
 
- <h2> 1. Introduction </h2>
+## 1. Introduction
 
- <h3> 1.1. Purpose </h3>
+### 1.1. Purpose
 
-<p>
 This document is a formal description of the LPC programming language.
 The LPC programming language is derived from C and named after its primary
 creator, Lars Pensjö.  Several dialects of LPC exist; the programming
-language described here is the one used in <i>Dworkin's Generic Driver</i>
+language described here is the one used in *Dworkin's Generic Driver*
 (DGD) version 1.1.
-</p>
 
-<!-- I will use the term LPCd to indicate the DGD dialect of LPC in
-     particular. -->
+### 1.2. History
 
- <h3> 1.2. History </h3>
+## 2. Environment
 
-<!-- First came LPmud 1, then LPmud 2, etc.
-     Game driver vs. multipurpose server. -->
+## 3. Language
 
-
- <h2> 2. Environment </h2>
-
-<!-- A description of objects, the server and clients.
-     Compilation of files to objects.  Translation phases (preprocessor).
-     ASCII code used, ISO 8859-1 recommended extension.
-     Value of newline etc. is fixed.
-     A description of which functions are called by the server, and when. -->
-
-
- <h2> 3. Language </h2>
-<p>
 In the syntax notation of this document, syntactic categories are
-indicated by <i>italic</i> type.
-</p>
+indicated by *italic* type.
 
- <h3> 3.1. Lexical elements </h3>
- <h3> 3.1.1. Tokens </h3>
-<p>
-A <i>token</i> is the minimal lexical element of the language.  The
+### 3.1. Lexical elements
+
+### 3.1.1. Tokens
+
+A *token* is the minimal lexical element of the language.  The
 categories of tokens are:
-<i><a href="#identifiers">identifiers</a></i>,
-<i><a href="#keywords">keywords</a></i>,
-<i><a href="#constants">constants</a></i>,
-<i><a href="#operators">operators</a></i> and
-<i><a href="#punctuators">punctuators</a></i>.  Tokens are separated by
+*[identifiers](#identifiers)*,
+*[keywords](#keywords)*,
+*[constants](#constants)*,
+*[operators](#operators)* and
+*[punctuators](#punctuators)*.  Tokens are separated by
 white space: blanks, horizontal and vertical tabs, newlines, carriage returns,
 form feeds and comments.
-</p>
 
- <h3> 3.1.2. Comments </h3>
-<p>
-A comment is a sequence of characters starting with the characters <tt>/*</tt>
-and terminated by the characters <tt>*/</tt>, or a sequence of characters that 
+### 3.1.2. Comments
+
+A comment is a sequence of characters starting with the characters `/*`
+and terminated by the characters `*/`, or a sequence of characters that
 starts with // and terminated by a new line.  All characters in between are
 part of the comment.  Comments count as whitespace separating tokens, and
-may not be nested.  The sequence <tt>/*</tt> does not start a comment if it
-is part of a string.  <b>Note: hydra does not support // style comments.</b>
-</p>
-<p>
+may not be nested.  The sequence `/*` does not start a comment if it
+is part of a string.  **Note: hydra does not support // style comments.**
+
 Examples:
-</p>
-<pre>
+
+```
 	/* This is 
 		comment */
 	// This is another comment
-</pre>
+```
 
- <h3> <a name="identifiers"> 3.1.3. Identifiers </a> </h3>
-<p>
+### 3.1.3. Identifiers {#identifiers}
+
 An identifier is an arbitrarily long sequence of letters, digits and
 underscores.  To be a valid identifier in LPC, the first character 
 must be a letter or underscore.  Only the first 1023 characters of an
-identifier are significant.  Note letters are case sensitive, <i>N5</i> is not
-the same as <i>n5"</i>.
-</p>
+identifier are significant.  Note letters are case sensitive, *N5* is not
+the same as *n5\"*.
 
- <h3> <a name="keywords"> 3.1.4. Keywords </a> </h3>
-<p>
+### 3.1.4. Keywords {#keywords}
+
 The following identifiers are reserved for use as keywords in the language:
-</p>
-<table border=1 cellpadding=8>
-<tr>
-   <td>atomic</td>
-   <td>break</td>
-   <td>case</td>
-   <td>catch</td>
-   <td>continue</td>
-   <td>default</td>
-   <td>do</td>
-   <td>else</td>
-</tr><tr>
-   <td>float</td>
-   <td>for</td>
-   <td>function*</td>
-   <td>goto*</td>
-   <td>if</td>
-   <td>inherit</td>
-   <td>int</td>
-   <td>mapping</td>
-   <td>mixed</td>
-</tr><tr>
-   <td>nil</td>
-   <td>nomask</td>
-   <td>object</td>
-   <td>private</td>
-   <td>return</td>
-   <td>rlimits</td>
-   <td>static</td>
-   <td>string</td>
-</tr><tr>
-   <td>switch</td>
-   <td>varargs</td>
-   <td>void</td>
-   <td>while</td>
-</tr>
-</table>
-<p>
-<b>
-Note: dgd does not support goto currently.<br>
-Note: function is only available if compiled with the -DCLOSURES option.
-</b>
-</p>
 
- <h3> <a name="constants"> 3.1.5. Constants </a> </h3>
-<p>
-A <i>constant</i> is either an
-<i><a href="#integer constants">integer constant</a></i>,
-<i><a href="#floating constants">floating constant</a></i>,
-<i><a href="#string constants">string constant</a></i> or
-<i><a href="#character constants">character constant</a></i>.
-</p>
+`atomic`
+`break`
+`case`
+`catch`
+`continue`
+`default`
+`do`
+`else`
+`float`
+`for`
+`function`\*
+`goto`\*
+`if`
+`inherit`
+`int`
+`mapping`
+`mixed`
+`nil`
+`nomask`
+`object`
+`private`
+`return`
+`rlimits`
+`static`
+`string`
+`switch`
+`varargs`
+`void`
+`while`
 
- <h3> <a name="integer constants"> 3.1.5.1. Integer Constants </a> </h3>
-<p>
-An <i>integer constant</i> is a <i>decimal constant</i>, <i>octal constant</i>
-or <i>hexadecimal constant</i>.
-</p>
-<p>
-A sequence of digits is taken to be a <i>decimal constant</i> (base ten)
-unless it begins with <tt>0</tt>.  A sequence of digits starting with <tt>0</tt>
-and not including <tt>8</tt> or <tt>9</tt> is an <i>octal constant</i>
-(base 8).  A sequence of digits and letters in the range of <tt>A - F</tt>, 
-preceded by <tt>0x</tt> or <tt>0X</tt> is a
-<i>hexadecimal constant</i>. (base 16, where <tt>A</tt> through <tt>F</tt>
-have the decimal values 10 through 15).  <b>Note: the letters can be upper or
-lower case in this instance.</b>
-</p>
-<p>
-<i>Integer constants</i> are represented by 32 bit 2's complement arithmetic,
+**Note: dgd does not support goto currently.**  
+**Note: function is only available if compiled with the -DCLOSURES option.**
+
+### 3.1.5. Constants {#constants}
+
+A *constant* is either an
+*[integer constant](#integer-constants)*,
+*[floating constant](#floating-constants)*,
+*[string constant](#string-constants)* or
+*[character constant](#character-constants)*.
+
+### 3.1.5.1. Integer Constants {#integer-constants}
+
+An *integer constant* is a *decimal constant*, *octal constant*
+or *hexadecimal constant*.
+
+A sequence of digits is taken to be a *decimal constant* (base ten)
+unless it begins with `0`.  A sequence of digits starting with `0`
+and not including `8` or `9` is an *octal constant*
+(base 8).  A sequence of digits and letters in the range of `A - F`,
+preceded by `0x` or `0X` is a
+*hexadecimal constant*. (base 16, where `A` through `F`
+have the decimal values 10 through 15).  **Note: the letters can be upper or lower case in this instance.**
+
+*Integer constants* are represented by 32 bit 2's complement arithmetic,
 and range from -2147483648 through 2147483647.  It is an error to specify a
-<i>decimal constant</i> that is too large to be represented.  <i>Octal
-constants</i> and <i>hexadecimal constants</i>, when too large, are
+*decimal constant* that is too large to be represented.  *Octal constants*
+and *hexadecimal constants*, when too large, are
 truncated to the lower 32 bits.
-</p>
-<p>
+
 For instance, the number forty-seven can be written as 47, 057 or 0x2f.
 There is a problem particular to LPCd with regard to -2147483648.  Since
 LPCd, unlike C, has no unsigned type, the decimal version of this number
@@ -186,34 +136,31 @@ LPCd, unlike C, has no unsigned type, the decimal version of this number
 to be represented.  - and 2147483648 cannot be read as a single token,
 because then 1-2147483648 would be scanned as two consecutive integers.
 This number must be specified by an octal or hexadecimal constant.
-</p>
 
- <h3> <a name="floating constants"> 3.1.5.2. Floating constants </a> </h3>
-<p>
-A <i>floating constant</i> consists of an integer part, a decimal point, a
-fraction part, and an exponent part, consisting of an <tt>e</tt> or <tt>E</tt>
+### 3.1.5.2. Floating constants {#floating-constants}
+
+A *floating constant* consists of an integer part, a decimal point, a
+fraction part, and an exponent part, consisting of an `e` or `E`
 and an optionally signed integer exponent.  Either the integer part or the
 fraction part, but not both, may be missing.  Either the decimal point and
 fraction part, or the exponent part, but not both, may be missing.
-</p>
-<p>
-<i>Floating constants</i> represent a floating point number in the range of
--1.79769313485E308 through 1.79769313485E308, the smallest possible number
-being -2.22507385851E-308.  It is an error to specify a <i>floating constant</i>
+
+*Floating constants* represent a floating point number in the range of
+\-1.79769313485E308 through 1.79769313485E308, the smallest possible number
+being -2.22507385851E-308.  It is an error to specify a *floating constant*
 that is too large to be represented.  Numbers which are too small are
 flushed to zero.
-</p>
 
- <h3> <a name="string constants"> 3.1.5.3. String constants </a> </h3>
-<p>
-A <i>string constant</i> is a sequence of zero or more characters enclosed
+### 3.1.5.3. String constants {#string-constants}
+
+A *string constant* is a sequence of zero or more characters enclosed
 in double quotes.  All characters, with the exception of newline, can be used in
-a <i>string constant</i>.  A backslash character <tt>\</tt> introduces an
+a *string constant*. A backslash character `\` introduces an
 escape sequence, which consists of at least 2 and at most 5 characters
 (including the backslash), and which is translated into a single character in
 the string.  The following escape sequences can be used:
-</p>
- <pre>
+
+```
 	\a = 007 (bell)			\o
 	\b = 010 (backspace)		\oo
 	\f = 014 (form feed)		\ooo
@@ -221,226 +168,204 @@ the string.  The following escape sequences can be used:
 	\r = 015 (carriage return)	\xhh
 	\t = 011 (horizontal tab)	\xhhh
 	\v = 013 (vertical tab)		\c
- </pre>
-<p>
-The value of <tt>\a</tt>, <tt>\b</tt>, <tt>\f</tt>, <tt>\n</tt>, <tt>\r</tt>,
-<tt>\t</tt> and <tt>\v</tt> is the octal value shown.  <tt>\o</tt>,
-<tt>\oo</tt> and <tt>\ooo</tt> constitute an integer of at most 3 octal
-digits, the octal value of which specifies a single character.  <tt>\xh</tt>,
-<tt>\xhh</tt> and <tt>\xhhh</tt> constitute an integer of at most 3 hexadecimal
+```
+
+The value of `\a`, `\b`, `\f`, `\n`, `\r`,
+`\t` and `\v` is the octal value shown.  `\o`,
+`\oo` and `\ooo` constitute an integer of at most 3 octal
+digits, the octal value of which specifies a single character.  `\xh`,
+`\xhh` and `\xhhh` constitute an integer of at most 3 hexadecimal
 digits, the hexadecimal value of which specifies a single character.  All other
-escape sequences <tt>\c</tt> specify the character <tt>c</tt> (any character
-except <tt>a</tt>, <tt>b</tt>, <tt>f</tt>, <tt>n</tt>, <tt>r</tt>, <tt>t</tt>,
-<tt>v</tt>, <tt>x</tt>, or a digit), which itself is not interpreted in any
+escape sequences `\c` specify the character `c` (any character
+except `a`, `b`, `f`, `n`, `r`, `t`,
+`v`, `x`, or a digit), which itself is not interpreted in any
 special way.
-</p>
-<!-- For example, "\"" is the string constant consisting of a double quote
-     character.  "\g\?\0123" is the same as "g?\n3".
-     The value of \a .. \v is fixed, and identical on all hosts, even on
-     those which have C compilers with different values for them.
-     Note that at most three hexadecimal digits can be used, even though all
-     characters can be expressed with just two. -->
 
+### 3.1.5.4. Character constants {#character-constants}
 
- <h3> <a name="character constants">3.1.5.4. Character constants </a> </h3>
-<p>
-A <i>character constant</i> consists of a single character or escape sequence,
+A *character constant* consists of a single character or escape sequence,
 enclosed in single quotes.  All characters except newline can be used.
-Escape sequences are handled as with <i><a href="#string constants">string
-constants</a></i>.
-</p>
-<!-- So-called multiple character constants are not allowed. -->
+Escape sequences are handled as with *[string constants](#string-constants)*.
 
+### 3.1.6. Operators {#operators}
 
- <h3> <a name="operators"> 3.1.6. Operators </a> </h3>
-<p>
 The following are operators:
-</p>
- <pre>
-	[   ]   (   )   -&gt;
-	++  --  +   -   ~   !   ... catch
-	*   /   %   &lt;&lt;  &gt;&gt;  &lt;   &gt;   &lt;=  &gt;=  ==  !=  &amp;   ^   |   &amp;&amp;  ||
-	?   :
-	=   *=  /=  %=  +=  -=  &lt;&lt;= &gt;&gt;= &amp;=  ^=  |=
-	,
- </pre>
 
- <h3> <a name="punctuators"> 3.1.7. Punctuators </a> </h3>
-<p>
+```
+	[   ]   (   )   ->
+	++  --  +   -   ~   !   ... catch
+	*   /   %   <<  >>  <   >   <=  >=  ==  !=  &   ^   |   &&  ||
+	?   :
+	=   *=  /=  %=  +=  -=  <<= >>= &=  ^=  |=
+	,
+```
+
+### 3.1.7. Punctuators {#punctuators}
+
 Punctuators are like a '.' in a sentence, there are a variety of punctuators
 but they are only used in key places.  For example when your defining a 
-variable, you might type: <b>int x, y;</b>.  The ';' is a punctuator that 
+variable, you might type: **int x, y;**. The ';' is a punctuator that
 says this is the end of this statement.  The ',' says I have another int
 that I want to define.  The following are some of the punctuators you will see: 
-</p>
-<pre>
+
+```
 	, ; :
-</pre>
-<p>
+```
+
 We'll introduce them as we need them, because they need context to make sense.
-</p>
- <h3> 3.2. Expressions </h3>
 
- <h3> 3.3. Constant expressions </h3>
+### 3.2. Expressions
 
- <h3> 3.4. Declarations </h3>
-<p>
-A <i>Declaration</i> can be a 
-<i><a href="#varaible declaration">variable declaration</a></i>, 
-<i><a href="#array declaration">array declaration</a></i>, 
-<i><a href="#function declaration">function declaration</a></i>.
-</p>
- <h3> <a name="variable declaration"> 3.4.1. Variable declaration </a> </h3>
-<p>
+### 3.3. Constant expressions
+
+### 3.4. Declarations
+
+A *Declaration* can be a
+*[variable declaration](#variable-declaration)*,
+*[array declaration](#array-declaration)*,
+*[function declaration](#function-declaration)*.
+
+### 3.4.1. Variable declaration {#variable-declaration}
+
 A variable declaration has the following form:
-<i><a href="#types">TYPE</a></i> Identifier;<br>
+*[TYPE](#types)* Identifier;  
 If you have multiple variables of the same type, you can separate them by a
 coma to keep them on the same line:  TYPE Identifier1, Identifier2;
-<b>Note: DGD does not allow assignment in the declaration statement.  
-(int x=5;  is not valid DGD LPC)</b>
-</p>
-<p>
+**Note: DGD does not allow assignment in the declaration statement. (int x=5; is not valid DGD LPC)**
+
 Examples:
-</p>
-<pre>
+
+```
 	int x;
 	mixed bing;
 	float a, b;
-</pre>
+```
 
- <h3> <a name="types"> 3.4.2. Types</a> </h3>
-<p>
+### 3.4.2. Types {#types}
+
 The following types are supported:
-</p>
-<p>
-	<i><a href="#typenil">nil</a></i>, 
-	<i><a href="#typeint">int</a></i>, 
-	<i><a href="#typefloat">float</a></i>, 
-	<i><a href="#typestring">string</a></i>, 
-	<i><a href="#typeobj">object</a></i>, 
-	<i><a href="#typemap">mapping</a></i>, 
-	<i><a href="#typemixed">mixed</a></i>, 
-	<i><a href="#typevoid">void</a></i>
-</p>
-<p>
-Types can also have <i><a href="type modifiers">Type Modifiers</a></i> 
+
+*[nil](#typenil)*,
+*[int](#typeint)*,
+*[float](#typefloat)*,
+*[string](#typestring)*,
+*[object](#typeobj)*,
+*[mapping](#typemap)*,
+*[mixed](#typemixed)*,
+*[void](#typevoid)*
+
+Types can also have *[Type Modifiers](type-modifiers)*
 which will change how the variable or function works.
-</p>
- <h3> <a name="types"> 3.4.2.1 Types: nil</a> </h3>
-<p>
+
+### 3.4.2.1 Types: nil {#typenil}
+
 Nil is a special value, its not actually a type but it is the value
 of a uninialized variable.  So you can see if a variable is undefined by
 seeing if it is equal to nil.  Example:
-</p>
-<pre>
+
+```
 /* Note this does not work for type int, but does for other types: string, mapping, etc... */
 string x;
 if (x == nil) write("You need to set x"); 
-</pre>
+```
 
- <h3> <a name="types"> 3.4.2.2 Types: int</a> </h3>
-<p>
+### 3.4.2.2 Types: int {#typeint}
+
 Declares the variable to be an integer, for a function it says the
 function will return an integer. See 
-<i><a href="#integer constants">integer constant</a></i> for valid integers.
-</p>
- <h3> <a name="types"> 3.4.2.3 Types: float</a> </h3>
-<p>
-Declares the variable to be a float, for a function it says the 
+*[integer constant](#integer-constants)* for valid integers.
+
+### 3.4.2.3 Types: float {#typefloat}
+
+Declares the variable to be a float, for a function it says the
 function will return a float. See
-<i><a href="#floating constants">floating constant</a></i> for valid floats.
-</p>
- <h3> <a name="types"> 3.4.2.4 Types: string</a> </h3>
-<p>
+*[floating constant](#floating-constants)* for valid floats.
+
+### 3.4.2.4 Types: string {#typestring}
+
 Declares the variable to be a string, for a function it says the
 function will return a string. See
-<i><a href="#string constants">string constant</a></i> for valid strings.
-</p>
- <h3> <a name="types"> 3.4.2.5 Types: object</a> </h3>
-<p>
+*[string constant](#string-constants)* for valid strings.
+
+### 3.4.2.5 Types: object {#typeobj}
+
 Declares the variable to be an object.  The driver deals with objects as a
 basic type.  If you create a room, a monster, a player, or a sword, all of 
 these are considered objects to the driver.  For a function it says the 
 function will return an object.
-</p>
- <h3> <a name="types"> 3.4.2.6 Types: mapping</a> </h3>
-<p>
-A mapping is similar to an <i><a href="array declaration">array</a></i>, 
-execpt you get to name your indices.  
-It is also sometimes called an associative array or a hash.  
+
+### 3.4.2.6 Types: mapping {#typemap}
+
+A mapping is similar to an *[array](#array-declaration)*,
+execpt you get to name your indices.
+It is also sometimes called an associative array or a hash.
 Think of it as a key/value pair.  Example:
-</p>
-<pre>
+
+```
 	mapping location;
 	location['fred'] = 'home';
 	write("Fred is " + location['fred'] + ".\n");
-</pre>
+```
 
- <h3> <a name="types"> 3.4.2.7 Types: mixed</a> </h3>
-<p>
+### 3.4.2.7 Types: mixed {#typemixed}
+
 The mixed type is used when a function will take multiple types, you can
 use the typeof function to find out what type the variable is currently
 using.  A good example of using a mixed type would be if a function
 returns a string or an int depending on what gets passed in.  You want to
 avoid using the mixed type to just get around type checking, limit it to
 cases where its truely useful to have multiple types.
-</p>
- <h3> <a name="types"> 3.4.2.8 Types: void</a> </h3>
-<p>
+
+### 3.4.2.8 Types: void {#typevoid}
+
 The void type is only valid for functions.  It says that the function
 does not return anything.  You can also use void to say that a function has
-no <i><a href="#parameters">paramaeters</a></i> passed into it. Examples:
-</p>
-<pre>
+no *[paramaeters](#parameters)* passed into it. Examples:
+
+```
 void do_stuff(int x) { write("I did stuff " + x + " times.\n"); }
 int do_stuff2(void) { write("I did stuff.\n"); }
-</pre>
+```
 
-<h3> <a name="type modifers"> Type Modifiers </a> </h3>
-<p>
+### Type Modifiers {#type-modifiers}
+
 Type modifiers appear before a type and provide special instructions
 to the driver for how handle the special type.  A type can have multiple
 modifiers associated with it.
-
 There are the following type modifiers: 
-<i><a href="#private">private</a></i>, 
-<i><a href="#static">static</a></i>, 
-<i><a href="#nomask">nomask</a></i>, 
-<i><a href="#atomic">atomic</a></i>
-</p>
- <h3> <a name="private"> 3.4.3. Type Modifiers: private </a> </h3>
-<p>
+*[private](#private)*,
+*[static](#static)*,
+*[nomask](#nomask)*,
+*[atomic](#atomic)*
+
+### 3.4.3. Type Modifiers: private {#private}
+
 The private type modifier is valid for both functions and variables.
 When a variable or fuction is marked as private,  it becomes only accessable 
 by the object in which it is defined.  Not even child objects that inherit
 this object will be able to access them.  You can use private functions
 and variables to insure that others access your data the way
-you want them to access it.  
-</p>
+you want them to access it.
 
- <h3> <a name="static"> 3.4.3. Type Modifers: static </a> </h3>
-<p>
+### 3.4.3. Type Modifers: static {#static}
+
 The static type modifier behaves differently for variables and functions.
-</p>
-<p>
+
 For variables that are declared as static, the variable will be defined
 globally for that object, and it will not be saved when save_object is called.
-</p>
-<p>
+
 For functions that are declared as static, the function will only be available
 to the object and it's children.
-</p>
 
- <h3> <a name="static"> 3.4.3. Type Modifers: nomask </a> </h3>
-<p>
+### 3.4.3. Type Modifers: nomask {#nomask}
+
 The nomask type modifier is only valid for functions, it
 makes it so that you can not redefine a function.  To put it another way,
 a child object can not have a function with the same name, it will use 
 the parents version of the function.
-</p>
 
- <h3> <a name="atomic"> 3.4.3. Type Modifers: atomic </a> </h3>
-<p>
+### 3.4.3. Type Modifers: atomic {#atomic}
+
 The atomic type modifier is only valid for functions, it
 makes it so that if an error occurs durring the function, the
 driver will roll everything back to before the function was called.
@@ -450,101 +375,94 @@ before the function call.  Atomic functions have a couple of drawbacks.
 They are forbidden from working with files in any way(renaming, writing, 
 reading, etc...).  They also have some overhead, they take twice as many
 ticks as they would if they were not declared atomic.
-</p>
 
- <h3> <a name="array declaration"> 3.4.3. Array declaration </a> </h3>
-<p>
+### 3.4.3. Array declaration {#array-declaration}
+
 An array is an extension of a basic type in lpc, which turns it into an 
 ordered list.  You can denote an array in two ways: 
-basic_type *Identifier;  or basic_type Identifier[NUMBER];
-</p>
-<p>
+basic_type \*Identifier; or basic_type Identifier\[NUMBER\];
+
 In the first your saying you want an array of basic_type but your not sure
 how big it is.  In the second, your saying you want the array to have NUMBER
 elements in it.  When indexing an element in an array you start at 0.  So
 if you declare an array 'myarray' to have 5 elements, they would be 
 addressed like this:
-myarray[0], myarray[1], myarray[2], myarray[3], myarray[4]
-</p>
-<p>
+myarray\[0\], myarray\[1\], myarray\[2\], myarray\[3\], myarray\[4\]
+
 Examples:
-</p>
-<pre>
+
+```
 	int x[5];
 	string *strings;
-</pre>
+```
 
- <h3> <a name="function declaration"> 3.4.4. Function declaration </a> </h3>
-<p>
+### 3.4.4. Function declaration {#function-declaration}
+
 A function declaration can be a 
-<i><a href="#function prototype">function prototype</a></i>, or a 
-<i><a href="#function definition">function definition</a></i>.
-</p>  
- <h3> <a name="function prototype"> 3.4.4.1. Function prototype </a> </h3>
-<p>
+*[function prototype](#function-prototype)*, or a
+*[function definition](#function-definition)*.
+
+### 3.4.4.1. Function prototype {#function-prototype}
+
 A prototype is used to reserve a name for a function, and specify the
 number of parameters you need to give it as well as define what the function
 will return, without defining the actual function.  It allows the driver
 to put the function in the symbol table even though it does not know what the 
-function is yet.  It is basically saying "hey I'm going to make a function 
-that looks like this later".
-</p>
-<p>
-A function prototype has the form: type Identifier(paramaters);
-</p>
+function is yet.  It is basically saying \"hey I'm going to make a function
+that looks like this later\".
 
- <h3> <a name="function definition"> 3.4.4.2. Function definition </a> </h3>
-<p>
+A function prototype has the form: type Identifier(paramaters);
+
+### 3.4.4.2. Function definition {#function-definition}
+
 A function definition has the form: type Identifier(paramaters) { statements }
-</p>
- <h3> 3.5. Statements </h3>
-<p>
+
+### 3.5. Statements
+
 There are lots of different types of statements: Assignments, function calls,
 function definitions, conditionals, loops, and other statements that affect
 the flow of a program.
-</p>
 
- <h3>Conditionals</h3>
- <h3>Loops</h3>
+### Conditionals
 
- <h3> 3.6. Inheritance </h3>
-<p>
+### Loops
+
+### 3.6. Inheritance
+
 Inheritance is one of the key building blocks of lpc.  The mudlib defines
 some standard objects.  For example, maybe your mudlib has: 
 /std/object.c, /std/room.c or /std/monster.c.
 You can use these building blocks by inheriting them.  Inherit statements
 must come before any other code, including #include preprocessor statements.
-</p>
-<p>
+
 The inherit syntax can have the following syntax:
-<p>
-<pre>
+
+```
 [priviate] inherit "FILENAME";
 [priviate] inierit Identifier "FILENAME";
-</pre>
-<p>
+```
+
 You can use an Identifer if your inheriting from multiple objects and want to
 explicitly call functions from one of them.  The private option will make it
 so that only this object will have access to the variables and functions
 inherited by the inherit statement.  You will not be able to access them
 from a call_other function, or if you inherit this object, you will not
 have access to the privately inherited stuff.
-</p>
-<p>
+
 Examples:
-</p>
-<pre>
+
+```
 	inherit "/std/room.c";
 	void create( void ) {
 		::create();
 		set_short("The void");
 		set_long("A vast nothingness.");
 	}
-</pre>
-<p>
+```
+
 or you can also do something like this:
-</p>
-<pre>
+
+```
 	inherit room "/std/room.c";
 	inherit ob "/std/object.c";
 	void create( void ) {
@@ -553,9 +471,9 @@ or you can also do something like this:
 		set_short("The void");
 		set_long("A vast nothingness.");
 	}
-	
-</pre>
-<p>
+
+```
+
 Because we have inherited our standard room, we get all of the code
 in our room file for free.  Because our room code has a function for
 set_long, we do not need to define set_long, we can just call it.
@@ -571,30 +489,28 @@ duplicate all of the code in /std/room.c's create function.
 We can just call ::create(); and then after that make any additional
 modifications we want to make.  If we don't care about the previously
 defined create function we can remove the ::create(); call.
-</p>
 
- <h3> 3.7. Preprocessing directives </h3>
-<p>
+### 3.7. Preprocessing directives
+
 Preprocessor commands start with a #, these commands, get run before compile
 time.  They are used to optionally compile bits of code and or to instruct
 the compiler how to do something.  Many times they are used to make things
 more portable.  The following preprocessor directives are recognized: 
-<i><a href="#preinclude">include</a></i>,
-<i><a href="#predefine">define</a></i>,
-<i><a href="#preundef">undef</a></i>,
-<i><a href="#preifdef">ifdef</a></i>,
-<i><a href="#preifndef">ifndef</a></i>,
-<i><a href="#preif">if</a></i>,
-<i><a href="#preifdef">endif</a></i>,
-<i><a href="#pre">else</a></i>,
-<i><a href="#pre">elif</a></i>,
-<i><a href="#prepragma">pragma</a></i>,
-<i><a href="#preline">line</a></i>,
-<i><a href="#preerror">error</a></i>
-</p>
+*[include](#preinclude)*,
+*[define](#predefine)*,
+*[undef](#preundef)*,
+*[ifdef](#preifdef)*,
+*[ifndef](#preifndef)*,
+*[if](#preif)*,
+*[endif](#preifdef)*,
+*[else](#preelse)*,
+*[elif](#preelif)*,
+*[pragma](#prepragma)*,
+*[line](#preline)*,
+*[error](#preerror)*
 
- <h3> <a name="preinclude"> 3.7.1. #include</a></h3>
-<p>
+### 3.7.1. #include {#preinclude}
+
 You use #include to include a header in a file.  A header file in general
 usually has special definitions and function prototypes.  For example if you
 were writing a NETWORK header, you might have a definition for a 
@@ -603,80 +519,79 @@ Header files are kind of like an API for the software you write.
 They make it simple to change important settings and explain how you use
 a library.  In general they should not include code in the header file.
 The syntax for an include looks like this:
-</p>
-<pre>
-#include &lt;file.h&gt;
+
+```
+#include <file.h>
 #include "filename.h"
-</pre>
-<p>
+```
+
 In general, the first case is for a standard header in the default search path
 and ""'s are used to include your own header.  It starts by searching the
 current directory.
 Examples:
-</p>
-<pre>
-#include &lt;std.h&gt;
-#include "room.h"
-</pre>
 
- <h3> <a name="predefine"> 3.7.2. #define</a></h3>
-<p>
+```
+#include <std.h>
+#include "room.h"
+```
+
+### 3.7.2. #define {#predefine}
+
 You use #define lots of times in a header file (filename.h)
 to make it easy to change certain values.  The syntax for
 a define looks like this: 
-</p>
-<pre>
+
+```
 #define Identifier VALUE
 #define Identifier
-</pre>
-<p>
+```
+
 If VALUE is omitted, it defines the Identifier but your not sure
 what the value is.  It may be nil, or it may be 1, or it may be something 
 else depending on implementation of the driver.
-</p>
-<p>
+
 Examples:
-</p>
-<pre>
+
+```
 #define MAX_STR 255
 #define DICTIONARY_SIZE 2000
 #define DEFAULT_PORT 4000
 #define DEBUGGING_ON
-</pre>
+```
 
- <h3> <a name="preundef"> 3.7.3. #undef</a></h3>
-<p>
+### 3.7.3. #undef {#preundef}
+
 You use #undef to undefine a previously defined item.  The syntax
 for undef is:
-</p>
-<pre>
+
+```
 #undef Identifier
-</pre>
-<p>
+```
+
 Examples:
-</p>
-<pre>
+
+```
 #undef MAX_STR
 #undef DEFAULT_PORT
-</pre>
+```
 
- <h3> <a name="preifdef"> 3.7.4. #ifdef, #endif</a></h3>
-<p>
+### 3.7.4. #ifdef, #endif {#preifdef}
+
 Ifdef is used to instruct the driver to optionally evaluate some code.
 While we are explaining ifdef we also need to introduce #endif since it
 is needed to complete an ifdef statement.
-#ifdef has the following syntax:
-</p>
-<pre>
+\#ifdef has the following syntax:
+
+```
 #ifdef Identifier
 (insert your code here)
 #endif
-</pre>
-<p>
+```
+
 So if whatever Identifier you have specified is defined to some value 
 (with an #define, or it can also be passed to the driver at runtime)
 Then it will evaluate the code until it hits a #endif  If there is no
-#endif the driver will throw an error.  Note: #endif is used in multiple
+\#endif the driver will throw an error.  Note: #endif is used in multiple
 places to designate then end of a block of code, its sometimes hard to keep
 track of it all so its good to add a comment saying this #endif goes with
 the Identifier you specify.  Note, ifdef does not actually check the
@@ -685,40 +600,37 @@ Something can be defined as 0 for example and ifdef will still say
 yes its defined.  If you want to check the value of something that is
 defined, you will want to use a more complicated #if statement, which
 you can find more info on later in the document.
-</p>
-<p>
+
 Example:
-</p>
-<pre>
+
+```
 #ifdef DEBUG
 	write("Were in debugging mode.\n");
 #endif // DEBUG
-</pre>
+```
 
- <h3> <a name="preifndef"> 3.7.5. #ifndef</a></h3>
-<p>
+### 3.7.5. #ifndef {#preifndef}
+
 Ifndef works the same way as ifdef but it only gets called if the Identifier
 you specify is not defined.
-</p>
-<p>
+
 Example:
-</p>
-<pre>
+
+```
 #ifndef DEBUG
 	#define DEBUG 1
 #endif
-</pre>
+```
 
- <h3> <a name="preif"> 3.7.6. #if, #else, #elif</a></h3>
-<p>
+### 3.7.6. #if, #else, #elif {#preif}
+
 An if statement is used for more complicated tests, you can test
 the value of a defined item, or for variations etc...  It works
 similar to the if conditional statement but at the preprocessor level.
-</p>
-<p>
+
 Examples:
-</p>
-<pre>
+
+```
 #if defined(DEBUG) || defined(VERBOSE)
 	write("Welcome to VERBOSE MODE!\n");
 #endif
@@ -732,25 +644,24 @@ Examples:
 #else
 	write("Were in quiet MODE.\n");
 #endif
-</pre>
+```
 
- <h3> <a name="prepragma"> 3.7.7. #pragma</a></h3>
-<p>
+### 3.7.7. #pragma {#prepragma}
+
 You use #pragma to pass a flag to the driver.  In general
 This is used for platform specific code. DGD currently ignores
-#pragma statements.  The syntax for Pragma is:
-</p>
-<pre>
+\#pragma statements.  The syntax for Pragma is:
+
+```
 #pragma STRING
-</pre>
-<p>
+```
+
 Note: the STRING is determined by the DRIVER its not something you can
 just make up.  If the DRIVER does not recognize a STRING it will just ignore
 it and or maybe send a warning.
-</p>
 
- <h3> <a name="preline"> 3.7.8. #line</a></h3>
-<p>
+### 3.7.8. #line {#preline}
+
 Used to override the driver's automatic detection of line# and or filename.
 Currently the code says line# is always ignored.  I think this is suppose
 to be used to get around bugs, you probably want to avoid this unless
@@ -758,32 +669,27 @@ you find a situation where you really need it.  If your familiar with
 FLEX, BISON and or YACC, you know that sometimes your code is generated
 on the fly and you could use #line to tell people the real file and
 position in the file they are interested in looking at for debugging purposes, 
-instead of the generated code which only exists for a short time.  
+instead of the generated code which only exists for a short time.
 (If you don't know what I'm explaining, you probably do not need to 
 worry about it.)
-</p>
-<p>
+
 Examples:
-</p>
-<pre>
+
+```
 #line 22 "myfile.c"
 #line "myfile.c"
 #line 22
-</pre>
+```
 
- <h3> <a name="preerror"> 3.7.9. #error</a></h3>
-<p>
+### 3.7.9. #error {#preerror}
+
 Call an error message, This is usually based on some condition that is
 external to the #error command,
-</p>
-<p>
+
 Example:
-</p>
-<pre>
+
+```
 #ifdef APSTUDIO_INVOKED
         #error this file is not editable by Microsoft Visual C++
-#endif 
-</pre>
-
-</body>
-</html>
+#endif
+```
