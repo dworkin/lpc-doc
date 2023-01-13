@@ -14,8 +14,8 @@ It should give you the general idea, but it still needs a lot of love.
 This document is a formal description of the LPC programming language.
 The LPC programming language is derived from C and named after its primary
 creator, Lars Pensjö.  Several dialects of LPC exist; the programming
-language described here is the one used in *Dworkin's Generic Driver*
-(DGD) version 1.1.
+language described here is the one used in *Dworkin's Game Driver*
+(DGD) version 1.7.
 
 ### 1.2. History
 
@@ -86,15 +86,18 @@ The following identifiers are reserved for use as keywords in the language:
 `int`
 `mapping`
 `mixed`
+`new`
 `nil`
 `nomask`
 `object`
+`operator`
 `private`
 `return`
 `rlimits`
 `static`
 `string`
 `switch`
+`try`
 `varargs`
 `void`
 `while`
@@ -156,7 +159,7 @@ flushed to zero.
 A *string constant* is a sequence of zero or more characters enclosed
 in double quotes.  All characters, with the exception of newline, can be used in
 a *string constant*. A backslash character `\` introduces an
-escape sequence, which consists of at least 2 and at most 5 characters
+escape sequence, which consists of at least 2 and at most 4 characters
 (including the backslash), and which is translated into a single character in
 the string.  The following escape sequences can be used:
 
@@ -166,15 +169,15 @@ the string.  The following escape sequences can be used:
 	\f = 014 (form feed)		\ooo
 	\n = 012 (newline)		\xh
 	\r = 015 (carriage return)	\xhh
-	\t = 011 (horizontal tab)	\xhhh
-	\v = 013 (vertical tab)		\c
+	\t = 011 (horizontal tab)	\c
+	\v = 013 (vertical tab)
 ```
 
 The value of `\a`, `\b`, `\f`, `\n`, `\r`,
 `\t` and `\v` is the octal value shown.  `\o`,
 `\oo` and `\ooo` constitute an integer of at most 3 octal
-digits, the octal value of which specifies a single character.  `\xh`,
-`\xhh` and `\xhhh` constitute an integer of at most 3 hexadecimal
+digits, the octal value of which specifies a single character.  `\xh` and
+`\xhh` constitute an integer of at most 2 hexadecimal
 digits, the hexadecimal value of which specifies a single character.  All other
 escape sequences `\c` specify the character `c` (any character
 except `a`, `b`, `f`, `n`, `r`, `t`,
@@ -192,8 +195,8 @@ Escape sequences are handled as with *[string constants](#string-constants)*.
 The following are operators:
 
 ```
-	[   ]   (   )   ->
-	++  --  +   -   ~   !   ... catch
+	[   ]   (   )   -> <-
+	++  --  +   -   ~   !   ... catch new
 	*   /   %   <<  >>  <   >   <=  >=  ==  !=  &   ^   |   &&  ||
 	?   :
 	=   *=  /=  %=  +=  -=  <<= >>= &=  ^=  |=
@@ -254,7 +257,7 @@ The following types are supported:
 *[mixed](#typemixed)*,
 *[void](#typevoid)*
 
-Types can also have *[Type Modifiers](type-modifiers)*
+Types can also have *[Type Modifiers](#type-modifiers)*
 which will change how the variable or function works.
 
 ### 3.4.2.1 Types: nil {#typenil}
@@ -379,22 +382,8 @@ ticks as they would if they were not declared atomic.
 ### 3.4.3. Array declaration {#array-declaration}
 
 An array is an extension of a basic type in lpc, which turns it into an 
-ordered list.  You can denote an array in two ways: 
-basic_type \*Identifier; or basic_type Identifier\[NUMBER\];
-
-In the first your saying you want an array of basic_type but your not sure
-how big it is.  In the second, your saying you want the array to have NUMBER
-elements in it.  When indexing an element in an array you start at 0.  So
-if you declare an array 'myarray' to have 5 elements, they would be 
-addressed like this:
-myarray\[0\], myarray\[1\], myarray\[2\], myarray\[3\], myarray\[4\]
-
-Examples:
-
-```
-	int x[5];
-	string *strings;
-```
+ordered list.  You can denote an array in the following way:
+basic_type \*Identifier;
 
 ### 3.4.4. Function declaration {#function-declaration}
 
@@ -663,7 +652,7 @@ it and or maybe send a warning.
 ### 3.7.8. #line {#preline}
 
 Used to override the driver's automatic detection of line# and or filename.
-Currently the code says line# is always ignored.  I think this is suppose
+I think this is suppose
 to be used to get around bugs, you probably want to avoid this unless
 you find a situation where you really need it.  If your familiar with
 FLEX, BISON and or YACC, you know that sometimes your code is generated
