@@ -26,4 +26,4 @@ ERRORS
 	be added, and no error will be caused.
 
 SEE ALSO
-	kfun/remove_call_out
+	kfun/call_out_summand, kfun/remove_call_out

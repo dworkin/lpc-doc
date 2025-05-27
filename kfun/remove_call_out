@@ -13,4 +13,4 @@ DESCRIPTION
 	object, return -1.
 
 SEE ALSO
-	kfun/call_out
+	kfun/call_out, kfun/call_out_summand
