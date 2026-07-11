@@ -1,0 +1,19 @@
+NAME
+	preprocess_file - process a file with the LPC preprocessor
+
+SYNOPSIS
+	string *preprocess_file(string file, string source...)
+
+
+DESCRIPTION
+	Preprocess the given file.  If the optional source argument is
+	supplied, the concatenation of those strings is preprocessed, instead.
+	The returned array contains the preprocessed output.
+
+ERRORS
+	Preprocessing errors will be reported to the driver object.
+	Furthermore, a failure to preprocess will result in a runtime error, as
+	well.
+
+SEE ALSO
+	kfun/compile_object
